@@ -1,6 +1,7 @@
 from src.routes.cancha import *
 from src.routes.equipos import *
 from src.routes.jugadores import *
+from src.routes.arbitros import *
 
 ROOT = [
     {
@@ -70,4 +71,25 @@ ROOT = [
         'method':'PUT',
         'function':actualizar_dorsal
     },
+    # ARBITROS
+    {
+        'path':'/crear_arbitro',
+        'method':'POST',
+        'function':crear_arbitro
+    },
+    {
+        'path':'/obtener_arbitros',
+        'method':'GET',
+        'function':obtener_arbitros
+    },
+    {
+        'path':'/obtener_arbitro/<id>',
+        'method':'GET',
+        'function':obtener_arbitro
+    },
+    {
+        'path':'/borrar_arbitro',
+        'method':'DELETE',
+        'function':borrar_arbitro
+    }
 ]
