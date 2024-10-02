@@ -2,6 +2,7 @@ from src.routes.cancha import *
 from src.routes.equipos import *
 from src.routes.jugadores import *
 from src.routes.arbitros import *
+from src.routes.presidentes import *
 
 ROOT = [
     {
@@ -91,5 +92,26 @@ ROOT = [
         'path':'/borrar_arbitro',
         'method':'DELETE',
         'function':borrar_arbitro
+    },
+    # PRESIDENTES
+    {
+        'path':'/crear_presidente',
+        'method':'POST',
+        'function':crear_presidente
+    },
+    {
+        'path':'/obtener_presidentes',
+        'method':'GET',
+        'function':obtener_presidentes
+    },
+    {
+        'path':'/obtener_presidente/<id>',
+        'method':'GET',
+        'function':obtener_presidente
+    },
+    {
+        'path':'/borrar_presidente',
+        'method':'DELETE',
+        'function':borrar_presidente
     }
 ]
