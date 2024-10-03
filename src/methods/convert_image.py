@@ -5,7 +5,7 @@ def processImage(image):
 
     string = image
     encript = uuid4()
-    route = f"static/playerImage/{encript}.png"
+    route = f"static/images/{encript}.png"
 
     with open(route, "wb") as fh:
         fh.write(base64.b64decode(string))

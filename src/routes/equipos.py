@@ -26,3 +26,20 @@ def eliminar_equipo():
     session.query(Equipos).filter(Equipos.id == data["id"]).delete()
     session.query()
     return make_response(jsonify({"message":"Deleted!"}), 200)
+
+def actualizar_puntos():
+    data = request.get_json()
+    session.query(Equipos).filter(Equipos.id == data["id"]).update({"puntos":data["nuevos_puntos"]})
+    session.commit()
+    query = session.query(Equipos).get(data["id"])
+    res = {"id":query.id, "nombre":query.nombre, "puntos":query.puntos, "logo":query.logo, "cancha_id":query.cancha_id}
+    return make_response(jsonify(res), 200)
+
+def empate():
+    data = request.get_json()
+    equipo1 = session.query(Equipos).get(data["equipo1"])
+    equipo2 = session.query(Equipos).get(data["equipo2"])
+    equipo1.puntos += 1
+    equipo2.puntos += 1
+    session.commit()
+    return make_response(jsonify({"message":"Updated!"}), 200)
