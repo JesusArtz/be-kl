@@ -24,3 +24,9 @@ def obtener_jugador(id):
     query = session.query(Jugadores).get(id)
     response = {"id":query.id, "nombre":query.nombre, "id_equipo":query.equipo_id, "posicion":query.posicion, "dorsal":query.dorsal, "foto":query.foto}
     return make_response(jsonify(response), 200)
+
+def eliminar_jugador():
+    data = request.get_json()
+    session.query(Jugadores).filter(Jugadores.id == data["id"]).delete()
+    session.commit()
+    return make_response(jsonify({"message":"Deleted!"}), 200)
