@@ -5,6 +5,7 @@ from src.routes.arbitros import *
 from src.routes.presidentes import *
 from src.routes.partidos import *
 from src.routes.reiniciar_liga import *
+from src.routes.usuarios import *
 
 ROOT = [
     {
@@ -157,5 +158,16 @@ ROOT = [
         'path':'/reiniciar',
         'method':'GET',
         'function':reiniciar_liga
+    },
+    # Session
+    {
+        'path':'/login',
+        'method':'POST',
+        'function':login
+    },
+    {
+        'path':'/registrar',
+        'method':'POST',
+        'function':registrar
     }
 ]
