@@ -6,6 +6,8 @@ from src.routes.presidentes import *
 from src.routes.partidos import *
 from src.routes.reiniciar_liga import *
 from src.routes.usuarios import *
+from src.routes.generar_credenciales import *
+
 
 ROOT = [
     {
@@ -174,5 +176,11 @@ ROOT = [
         'path':'/registrar',
         'method':'POST',
         'function':registrar
+    },
+    # CREDENCIALIZACION
+    {
+        'path':'/obtener_credenciales',
+        'method':'GET',
+        'function':generar_credenciales
     }
 ]
