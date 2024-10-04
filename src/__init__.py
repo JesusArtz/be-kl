@@ -153,6 +153,11 @@ ROOT = [
         'method':'PUT',
         'function':partido_jugado
     },
+    {
+        'path':'/obtener_jornada/<jornada>',
+        'method':'GET',
+        'function':obtener_jornada
+    },
     # REINICIAR 
     {
         'path':'/reiniciar',
