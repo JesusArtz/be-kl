@@ -45,15 +45,13 @@ class Jugadores(Base):
     id = Column(Integer, primary_key=True)
     nombre = Column(String, nullable=False)
     equipo_id = Column(Integer, ForeignKey(Equipos.id))
-    posicion = Column(String, nullable=False)
-    dorsal = Column(Integer, nullable=False)
+    nocontrol = Column(String, nullable=False)
     foto = Column(String, nullable=False)
 
-    def __init__(self, nombre, equipo_id, posicion, dorsal, foto):
+    def __init__(self, nombre, equipo_id, nocontrol, foto):
         self.nombre = nombre
         self.equipo_id = equipo_id
-        self.posicion = posicion
-        self.dorsal = dorsal
+        self.nocontrol = nocontrol
         self.foto = foto
 
 class Arbitros(Base):

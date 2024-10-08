@@ -87,11 +87,6 @@ ROOT = [
         'method':'DELETE',
         'function':borrar_jugador
     },
-    {
-        'path':'/actualizar_dorsal',
-        'method':'PUT',
-        'function':actualizar_dorsal
-    },
     # ARBITROS
     {
         'path':'/crear_arbitro',
