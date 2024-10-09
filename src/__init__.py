@@ -97,6 +97,11 @@ ROOT = [
         'method':'PUT',
         'function':actualizar_foto
     },
+    {
+        'path':'/actualizar_foto_equipo',
+        'method':'PUT',
+        'function':actualizar_foto_equipo
+    },
     # ARBITROS
     {
         'path':'/crear_arbitro',
