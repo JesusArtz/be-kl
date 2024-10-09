@@ -49,3 +49,14 @@ def actualizar_foto():
     query = session.query(Jugadores).get(data["id"])
     res = {"id":query.id, "nombre":query.nombre, "id_equipo":query.equipo_id, "nocontrol":query.nocontrol, "foto":query.foto}
     return make_response(jsonify(res), 200)
+
+def actualizar_foto_equipo():
+    data = request.get_json()
+    jugadores = session.query(Jugadores).filter(Jugadores.equipo_id == data["equipo_id"]).all()
+    nueva_foto = processImage(data["nueva_foto"])
+    for jugador in jugadores:
+        antigua_foto = jugador.foto
+        session.query(Jugadores).filter(Jugadores.id == jugador.id).update({"foto":nueva_foto})
+        os.remove(f"{antigua_foto}")
+    session.commit()
+    return make_response(jsonify({"message":"Updated!"}), 200)
