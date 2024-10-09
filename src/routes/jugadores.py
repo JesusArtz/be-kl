@@ -2,6 +2,7 @@ from db import session
 from flask import request, jsonify, make_response
 from src.database.models import Jugadores
 from src.methods.convert_image import processImage
+import os
 
 def crear_jugador():
     data = request.get_json()
@@ -30,3 +31,21 @@ def borrar_jugador():
     session.query(Jugadores).filter(Jugadores.id == data["id"]).delete()
     session.commit()
     return make_response(jsonify({"message":"Deleted!"}))
+
+def actualizar_nocontrol():
+    data = request.get_json()
+    session.query(Jugadores).filter(Jugadores.id == data["id"]).update({"nocontrol":data["nuevo_nocontrol"]})
+    session.commit()
+    query = session.query(Jugadores).get(data["id"])
+    res = {"id":query.id, "nombre":query.nombre, "id_equipo":query.equipo_id, "nocontrol":query.nocontrol, "foto":query.foto}
+    return make_response(jsonify(res), 200)
+
+def actualizar_foto():
+    data = request.get_json()
+    antigua_foto = session.query(Jugadores).get(data["id"]).foto
+    session.query(Jugadores).filter(Jugadores.id == data["id"]).update({"foto":processImage(data["nueva_foto"])})
+    session.commit()
+    os.remove(f"{antigua_foto}") 
+    query = session.query(Jugadores).get(data["id"])
+    res = {"id":query.id, "nombre":query.nombre, "id_equipo":query.equipo_id, "nocontrol":query.nocontrol, "foto":query.foto}
+    return make_response(jsonify(res), 200)
