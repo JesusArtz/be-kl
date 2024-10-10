@@ -57,6 +57,5 @@ def actualizar_foto_equipo():
     for jugador in jugadores:
         antigua_foto = jugador.foto
         session.query(Jugadores).filter(Jugadores.id == jugador.id).update({"foto":nueva_foto})
-        os.remove(f"{antigua_foto}")
     session.commit()
     return make_response(jsonify({"message":"Updated!"}), 200)
